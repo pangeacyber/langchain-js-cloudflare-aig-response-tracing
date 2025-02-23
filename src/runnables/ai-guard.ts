@@ -28,13 +28,11 @@ export class PangeaAiGuardRunnable<
       text: input,
       recipe: 'pangea_llm_response_guard',
     });
-    if (!redacted.result) {
+    if (!redacted.result || !redacted.result.prompt_text) {
       throw new Error('Failed to guard text.');
     }
 
-    return redacted.result.redacted_prompt
-      ? (redacted.result.redacted_prompt as RunInput)
-      : input;
+    return redacted.result.prompt_text as RunInput;
   }
 
   override invoke(

@@ -28,7 +28,7 @@ export class PangeaAiGuardRunnable<
       text: input,
       recipe: 'pangea_llm_response_guard',
     });
-    if (!redacted.result || !redacted.result.prompt_text) {
+    if (!redacted.result?.prompt_text) {
       throw new Error('Failed to guard text.');
     }
 
